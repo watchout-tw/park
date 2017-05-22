@@ -1,4 +1,6 @@
 .DS_Store
+.sass-cache
+wormhole
 node_modules/
 dist/
 npm-debug.log*

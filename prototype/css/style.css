@@ -1,0 +1,107 @@
+/* Colors */
+/* Typography */
+/* Mixin */
+/* Bootstrap breakpoint */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  background: none;
+  border: none;
+  border-bottom: 2px #9b9b9b solid;
+  line-height: 1.75;
+  padding: 0;
+  margin: 0; }
+  input[type="text"].full-width,
+  input[type="email"].full-width,
+  input[type="password"].full-width {
+    width: 100%; }
+
+button {
+  background: #FFB55D;
+  border: 2px #9b9b9b solid;
+  border-radius: 2px;
+  line-height: 1;
+  padding: 0.75rem;
+  cursor: pointer; }
+  button.small {
+    font-size: 0.875rem;
+    padding: 0.5rem; }
+
+input + button {
+  margin-left: 0.5rem; }
+
+.field {
+  margin: 0.5rem 0; }
+  .field:first-of-type {
+    margin: 0 0 0.5rem; }
+  .field:last-of-type {
+    margin: 0.5rem 0 0; }
+
+.form-check-label > * {
+  vertical-align: middle; }
+.form-check-label > input[type="checkbox"] {
+  margin-right: 0.25rem; }
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  cursor: pointer;
+  height: 1.5rem;
+  width: 1.5rem;
+  position: relative;
+  -webkit-transition: .15s;
+  background-color: rgba(255, 181, 93, 0.25);
+  border: 2px #9b9b9b solid;
+  border-radius: 2px; }
+
+input[type="checkbox"]:checked {
+  background-color: #FFB55D; }
+
+input[type="checkbox"]:before,
+input[type="checkbox"]:checked:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 1.25rem;
+  text-align: center;
+  color: black;
+  font-family: "Space Mono", monospace; }
+
+input[type="checkbox"]:checked:before {
+  content: 'V'; }
+
+.modal-dialog {
+  width: 18rem;
+  margin: 5rem auto 0;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25); }
+
+.modal-backdrop {
+  background: white; }
+  .modal-backdrop.show {
+    opacity: 0.95; }
+
+.accordion > .card {
+  background: none;
+  border: none;
+  border-radius: 0; }
+  .accordion > .card > .card-header {
+    border: none;
+    background: none; }
+
+#modal-join-login .modal-dialog {
+  background: rgba(255, 181, 93, 0.35); }
+#modal-join-login .accordion > .card {
+  padding: 0 1rem; }
+  #modal-join-login .accordion > .card > .card-head {
+    padding: 1rem 0; }
+  #modal-join-login .accordion > .card > .card-body > .padding {
+    padding-bottom: 1rem; }
+#modal-join-login .accordion > .card.dark {
+  background: rgba(255, 181, 93, 0.25); }
+
+#form-join [name="id"] {
+  width: 12.5rem; }
+
+/*# sourceMappingURL=style.css.map */
