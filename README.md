@@ -23,10 +23,9 @@ global.Tether = require('tether')
 global.Bootstrap = require('bootstrap')
 ```
 
-## Use CSS
+## Use CSS with `<style lang="scss">`
 
 ``` css
-<style lang="scss">
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~common/styles/resources';
 ```
