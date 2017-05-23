@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <div class="d-flex justify-content-between">
       <div v-for="channel in DataStore.channels">{{ channel.id }}</div>
     </div>
@@ -28,11 +27,5 @@ export default {
 @import '~common/styles/main';
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
