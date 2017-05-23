@@ -19,7 +19,6 @@ npm install tether bootstrap@4.0.0-alpha.6 --save
 ``` js
 import $ from 'jquery'
 window.jQuery = window.$ = $
-
 global.Tether = require('tether')
 global.Bootstrap = require('bootstrap')
 ```
