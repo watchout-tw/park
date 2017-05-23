@@ -15,9 +15,16 @@ npm install jquery --save
 npm install tether bootstrap@4.0.0-alpha.6 --save
 ```
 
-## Import things
+## Use JavaScript
+``` js
+import $ from 'jquery'
+window.jQuery = window.$ = $
 
-### CSS
+global.Tether = require('tether')
+global.Bootstrap = require('bootstrap')
+```
+
+## Use CSS
 
 ``` css
 <style lang="scss">
