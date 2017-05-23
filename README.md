@@ -2,6 +2,29 @@
 
 > Build a park with Vue.js
 
+## Initialize
+
+``` bash
+# scaffold a new vue project with vue-cli
+vue init webpack [project_name]
+
+# add modules to project
+npm install node-sass sass-loader style-loader --save-dev
+npm install path/to/watchout-tw/common --save-dev
+npm install jquery --save
+npm install bootstrap@4.0.0-alpha.6 --save
+```
+
+## Import things
+
+### CSS
+
+``` css
+<style lang="scss">
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~common/styles/resources';
+```
+
 ## Build Setup
 
 ``` bash
