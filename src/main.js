@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import FooterStandard from 'common/components/Footer'
+import FooterStandard from 'common/components/FooterStandard'
 import $ from 'jquery'
 window.jQuery = window.$ = $
 

@@ -29,7 +29,6 @@ global.Bootstrap = require('bootstrap')
 > with `<style lang="scss">`
 
 ``` css
-@import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~common/styles/resources';
 ```
 

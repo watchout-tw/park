@@ -14,7 +14,7 @@ common.hello()
 
 export default {
   name: 'app',
-  data: function() {
+  data() {
     return {
       DataStore: common.DataStore
     }
@@ -24,8 +24,8 @@ export default {
 
 <style lang="scss">
 
-@import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~common/styles/resources';
+@import '~common/styles/main';
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -34,6 +34,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  background-color: $color-placeholder;
 }
 </style>
