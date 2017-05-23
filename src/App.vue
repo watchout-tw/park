@@ -2,9 +2,7 @@
   <div id="app">
     <img src="./assets/logo.png">
     <div class="d-flex justify-content-between">
-      <div class="p-2">Flex item 1</div>
-      <div class="p-2">Flex item 2</div>
-      <div class="p-2">Flex item 3</div>
+      <div v-for="channel in DataStore.channels">{{ channel.id }}</div>
     </div>
     <router-view></router-view>
   </div>
@@ -15,7 +13,12 @@ import common from 'common'
 common.hello()
 
 export default {
-  name: 'app'
+  name: 'app',
+  data: function() {
+    return {
+      DataStore: common.DataStore
+    }
+  }
 }
 </script>
 
@@ -31,6 +34,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  background-color: $color-watchout;
+  background-color: $color-placeholder;
 }
 </style>

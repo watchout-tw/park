@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import FooterStandard from 'common/components/Footer'
 import $ from 'jquery'
 window.jQuery = window.$ = $
 
@@ -17,4 +18,10 @@ new Vue({
   router,
   template: '<App/>',
   components: { App }
+})
+
+new Vue({
+  el: '#footer',
+  template: '<FooterStandard/>',
+  components: { FooterStandard }
 })
