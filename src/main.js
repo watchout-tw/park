@@ -6,7 +6,8 @@ import router from './router'
 import $ from 'jquery'
 window.jQuery = window.$ = $
 
-require('bootstrap')
+global.Tether = require('tether')
+global.Bootstrap = require('bootstrap')
 
 Vue.config.productionTip = false
 
