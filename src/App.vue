@@ -1,10 +1,7 @@
 <template>
-  <div id="app">
-    <div class="d-flex justify-content-between">
-      <div v-for="channel in DataStore.channels">{{ channel.id }}</div>
-    </div>
-    <router-view></router-view>
-  </div>
+<div id="app">
+  <router-view></router-view>
+</div>
 </template>
 
 <script>
@@ -22,10 +19,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 @import '~common/styles/resources';
 @import '~common/styles/main';
-
-#app {
-}
 </style>
