@@ -11,8 +11,7 @@ vue init webpack [project_name]
 # add modules to project
 npm install node-sass sass-loader --save-dev
 npm install path/to/watchout-tw/common --save-dev
-npm install jquery --save
-npm install tether bootstrap@4.0.0-alpha.6 --save
+npm install jquery tether bootstrap@4.0.0-alpha.6 --save
 ```
 
 ## Use JavaScript
