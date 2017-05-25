@@ -4,10 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import common from 'common'
-import NavigationSimple from 'common/components/Navigation/Simple'
+import NavigationWithIdentity from 'common/components/Navigation/Identity'
 import FooterStandard from 'common/components/Footer/Standard'
-import $ from 'jquery'
-window.jQuery = window.$ = $
+global.$ = window.jQuery = window.$ = require('jquery')
 global.Tether = require('tether')
 global.Bootstrap = require('bootstrap')
 
@@ -23,10 +22,11 @@ new Vue({
       channel: currentChannel
     }
   },
-  template: '<NavigationSimple/>',
-  components: { NavigationSimple }
+  template: '<NavigationWithIdentity/>',
+  components: { NavigationWithIdentity }
 })
 
+Vue.component('modal-auth', require('common/components/Modal/Auth'))
 new Vue({
   el: '#app',
   router,
