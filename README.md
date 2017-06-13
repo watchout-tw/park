@@ -2,35 +2,6 @@
 
 > Build a park with Vue.js
 
-## Initialize
-
-``` bash
-# scaffold a new vue project with vue-cli
-vue init webpack [project_name]
-
-# add modules to project
-npm install node-sass sass-loader --save-dev
-npm install path/to/watchout-tw/common --save-dev
-npm install jquery tether bootstrap@4.0.0-alpha.6 --save
-```
-
-## Use JavaScript
-
-``` js
-import $ from 'jquery'
-global.$ = window.jQuery = window.$ = require('jquery')
-global.Tether = require('tether')
-global.Bootstrap = require('bootstrap')
-```
-
-## Use CSS
-
-> with `<style lang="scss">`
-
-``` css
-@import '~common/styles/resources';
-```
-
 ## Build Setup
 
 ``` bash

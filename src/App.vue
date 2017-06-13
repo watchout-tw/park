@@ -6,20 +6,19 @@
 </template>
 
 <script>
-import common from 'common'
-common.hello()
+import dataStore from 'common/src/lib/dataStore'
 
 export default {
   name: 'app',
   data() {
     return {
-      DataStore: common.DataStore
+      dataStore
     }
   }
 }
 </script>
 
 <style lang="scss">
-@import '~common/styles/resources';
-@import '~common/styles/main';
+@import '~common/src/styles/resources';
+@import '~common/src/styles/main';
 </style>
