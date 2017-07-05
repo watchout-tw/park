@@ -1,19 +1,32 @@
 <template>
 <div id="app">
+  <NavigationWithIdentity :channel="channel" :isAuthenticated.sync="isAuthenticated" :modalAuthIsShown.sync="modalAuthIsShown"></NavigationWithIdentity>
   <router-view></router-view>
-  <modal-auth></modal-auth>
+  <ModalAuth v-if="modalAuthIsShown" :modalAuthIsShown.sync="modalAuthIsShown" :isAuthenticated.sync="isAuthenticated"></ModalAuth>
+  <FooterStandard></FooterStandard>
 </div>
 </template>
 
 <script>
 import dataStore from 'common/src/lib/dataStore'
+import NavigationWithIdentity from 'common/src/components/Navigation/Identity'
+import ModalAuth from 'common/src/components/Modal/Auth'
+import FooterStandard from 'common/src/components/Footer/Standard'
 
 export default {
   name: 'app',
   data() {
     return {
-      dataStore
+      dataStore,
+      channel: dataStore.channels.park,
+      isAuthenticated: false,
+      modalAuthIsShown: false
     }
+  },
+  components: {
+    NavigationWithIdentity,
+    ModalAuth,
+    FooterStandard
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
 <div class="everyone">
-  <h1>線上草民</h1>
+  <h1 class="small">線上草民</h1>
   {{ everyone }}
 </div>
 </template>
@@ -8,7 +8,8 @@
 <script>
 import axios from 'axios'
 
-var baseURL = 'https://apidev.watchout.tw'
+axios.defaults.baseURL = 'https://c0re.watchout.tw'
+
 export default {
   data() {
     return {
@@ -16,10 +17,10 @@ export default {
     }
   },
   mounted() {
-    axios.get(`${baseURL}/citizen/wesley_chia_wei_lin`).then(response => {
+    axios.get('/citizen/wesley_chia_wei_lin').then(response => {
       this.everyone = response.data
     }, response => {
-      this.everyone.push('error')
+      this.everyone.push('error') // this is temporary
     })
   }
 }
