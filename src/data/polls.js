@@ -5,7 +5,7 @@ export default [
     type: 'people',
     name: '桃園立委給問嗎',
     question: '這些桃園的立法委員，你想問誰？',
-    description: undefined,
+    description: '得票數前四名，沃草將會邀請委員參加九月的《桃園立委給問嗎》。',
     options: [
       {
         id: '鄭運鵬',
