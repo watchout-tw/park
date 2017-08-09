@@ -1,7 +1,6 @@
 <template>
 <div class="everyone">
   <h1 class="small">線上草民</h1>
-  {{ everyone }}
 </div>
 </template>
 
@@ -17,10 +16,10 @@ export default {
     }
   },
   mounted() {
-    axios.get('/citizen/wesley_chia_wei_lin').then(response => {
+    axios.get('/everyone').then(response => {
       this.everyone = response.data
-    }, response => {
-      this.everyone.push('error') // this is temporary
+    }).catch(error => {
+      console.error(error)
     })
   }
 }
