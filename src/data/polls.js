@@ -50,5 +50,15 @@ export default [
         district: '全國不分區'
       }
     ]
+  },
+  {
+    id: 2,
+    slug: 'ask-taichung',
+    name: '台中立委給問嗎'
+  },
+  {
+    id: 3,
+    slug: 'ask-kaohsiung',
+    name: '高雄立委給問嗎'
   }
 ]

@@ -1,7 +1,7 @@
 <template>
 <div id="app">
   <NavigationWithIdentity :channel="channel"></NavigationWithIdentity>
-  <router-view></router-view>
+  <router-view :channel.sync="channel"></router-view>
   <ModalAuth v-if="modalAuthIsShown"></ModalAuth>
   <ModalResetPassword v-if="modalResetPasswordIsShown"></ModalResetPassword>
   <ModalIdentity v-if="modalIdentityIsShown"></ModalIdentity>

@@ -1,6 +1,5 @@
 <template>
 <div class="polls-wrapper">
-  <h1 class="small">沃草民調</h1>
   <div class="polls">
     <router-link class="poll" v-for="poll in polls" :key="poll.id" :to="pollPath(poll)">
       <h3 class="small">{{ poll.name }}</h3>
@@ -10,9 +9,16 @@
 </template>
 
 <script>
+import dataStore from 'common/src/lib/dataStore'
 import polls from '@/data/polls' // FIXME: GET /park/polls
 
 export default {
+  metaInfo() {
+    return {
+      title: '沃草→民調←'
+    }
+  },
+  props: ['channel'],
   data() {
     return {
       polls
@@ -22,6 +28,9 @@ export default {
     pollPath(poll) {
       return '/polls/' + poll.slug
     }
+  },
+  beforeMount() {
+    this.$emit('update:channel', dataStore.channels.poll)
   }
 }
 </script>
@@ -35,6 +44,14 @@ export default {
   margin: 1rem auto;
   @include bp-sm-down {
     padding: 0 1rem;
+  }
+
+  .logotype {
+    box-sizing: content-box;
+    $border-left-width: 0.75rem;
+    border-left: $border-left-width $color-nice-grey solid;
+    margin-left: -$border-left-width;
+    width: 154px;
   }
 }
 // this should be the standard style for a list of links
