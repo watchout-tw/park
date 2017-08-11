@@ -49,7 +49,14 @@ export default [
         party: '國民黨',
         district: '全國不分區'
       }
-    ]
+    ],
+    related_event: {
+      id: 16,
+      type: 'physical',
+      name: '桃園立委給問嗎',
+      link: 'https://ask.watchout.tw',
+      participation_link: 'https://ask.watchout.tw'
+    }
   },
   {
     id: 2,
