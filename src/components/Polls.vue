@@ -10,7 +10,7 @@
 
 <script>
 import dataStore from 'common/src/lib/dataStore'
-import polls from '@/data/polls' // FIXME: GET /park/polls
+import polls from '@/data/polls' // FIXME: eventually use GET /park/polls
 
 export default {
   metaInfo() {
