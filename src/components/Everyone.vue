@@ -13,6 +13,9 @@ export default {
   mounted() {
     if(this.$route.query.hasOwnProperty('login')) {
       if(!this.isAuthenticated) {
+        this.$store.dispatch('toggleModalAuthActiveCard', {
+          value: 'login'
+        })
         this.$store.dispatch('toggleModalAuth', {
           value: true
         })
