@@ -3,7 +3,7 @@
   <NavigationWithIdentity :channel="channel"></NavigationWithIdentity>
   <router-view :channel.sync="channel"></router-view>
   <ModalAuth v-if="modalAuthIsShown"></ModalAuth>
-  <ModalResetPassword v-if="modalResetPasswordIsShown"></ModalResetPassword>
+  <ModalLostPwd v-if="modalLostPwdIsShown"></ModalLostPwd>
   <ModalIdentity v-if="modalIdentityIsShown"></ModalIdentity>
   <FooterStandard></FooterStandard>
   <SupportWatchoutStandard v-if="supportIsShown" :support-is-shown.sync="supportIsShown" :support-package-key="supportPackageKey"></SupportWatchoutStandard>
@@ -16,7 +16,7 @@ import Vuex from 'vuex'
 import dataStore from 'common/src/lib/dataStore'
 import NavigationWithIdentity from 'common/src/components/Navigation/Identity'
 import ModalAuth from 'common/src/components/Modal/Auth'
-import ModalResetPassword from 'common/src/components/Modal/ResetPassword'
+import ModalLostPwd from 'common/src/components/Modal/LostPwd'
 import ModalIdentity from 'common/src/components/Modal/Identity'
 import FooterStandard from 'common/src/components/Footer/Standard'
 import SupportWatchoutStandard from 'common/src/components/SupportWatchout/Standard'
@@ -29,7 +29,7 @@ export default {
   components: {
     NavigationWithIdentity,
     ModalAuth,
-    ModalResetPassword,
+    ModalLostPwd,
     ModalIdentity,
     FooterStandard,
     SupportWatchoutStandard
@@ -41,8 +41,8 @@ export default {
     modalAuthIsShown() {
       return this.$store.state.modalAuthIsShown
     },
-    modalResetPasswordIsShown() {
-      return this.$store.state.modalResetPasswordIsShown
+    modalLostPwdIsShown() {
+      return this.$store.state.modalLostPwdIsShown
     },
     modalIdentityIsShown() {
       return this.$store.state.modalIdentityIsShown
