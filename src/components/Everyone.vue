@@ -22,7 +22,7 @@ export default {
       } else {
         alert('歡迎回到沃草共有地')
       }
-    } else if(this.hasRequest('resetPassword')) {
+    } else if(this.hasRequest('reset-password')) {
       this.$store.dispatch('toggleModalResetPwd', {
         value: true
       })
