@@ -4,6 +4,7 @@
   <router-view :channel.sync="channel"></router-view>
   <ModalAuth v-if="modalAuthIsShown"></ModalAuth>
   <ModalLostPwd v-if="modalLostPwdIsShown"></ModalLostPwd>
+  <ModalResetPwd v-if="modalResetPwdIsShown"></ModalResetPwd>
   <ModalIdentity v-if="modalIdentityIsShown"></ModalIdentity>
   <FooterStandard></FooterStandard>
   <SupportWatchoutStandard v-if="supportIsShown" :support-is-shown.sync="supportIsShown" :support-package-key="supportPackageKey"></SupportWatchoutStandard>
@@ -17,6 +18,7 @@ import dataStore from 'common/src/lib/dataStore'
 import NavigationWithIdentity from 'common/src/components/Navigation/Identity'
 import ModalAuth from 'common/src/components/Modal/Auth'
 import ModalLostPwd from 'common/src/components/Modal/LostPwd'
+import ModalResetPwd from 'common/src/components/Modal/ResetPwd'
 import ModalIdentity from 'common/src/components/Modal/Identity'
 import FooterStandard from 'common/src/components/Footer/Standard'
 import SupportWatchoutStandard from 'common/src/components/SupportWatchout/Standard'
@@ -30,6 +32,7 @@ export default {
     NavigationWithIdentity,
     ModalAuth,
     ModalLostPwd,
+    ModalResetPwd,
     ModalIdentity,
     FooterStandard,
     SupportWatchoutStandard
@@ -43,6 +46,9 @@ export default {
     },
     modalLostPwdIsShown() {
       return this.$store.state.modalLostPwdIsShown
+    },
+    modalResetPwdIsShown() {
+      return this.$store.state.modalResetPwdIsShown
     },
     modalIdentityIsShown() {
       return this.$store.state.modalIdentityIsShown

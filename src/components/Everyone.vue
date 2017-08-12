@@ -11,7 +11,7 @@ export default {
     }
   },
   mounted() {
-    if(this.$route.query.hasOwnProperty('login')) {
+    if(this.hasRequest('login')) {
       if(!this.isAuthenticated) {
         this.$store.dispatch('toggleModalAuthActiveCard', {
           value: 'login'
@@ -22,6 +22,15 @@ export default {
       } else {
         alert('歡迎回到沃草共有地')
       }
+    } else if(this.hasRequest('resetPassword')) {
+      this.$store.dispatch('toggleModalResetPwd', {
+        value: true
+      })
+    }
+  },
+  methods: {
+    hasRequest(key) {
+      return this.$route.query.hasOwnProperty(key)
     }
   }
 }
