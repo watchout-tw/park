@@ -1,9 +1,16 @@
 <template>
 <div class="polls-wrapper">
+  <img class="key-visual" :src="keyVisual" />
   <div class="polls">
-    <router-link class="poll" v-for="poll in polls" :key="poll.id" :to="pollPath(poll)">
-      <h3 class="small">{{ poll.name }}</h3>
-    </router-link>
+    <template v-for="poll in polls">
+      <router-link v-if="pollIsActive(poll)" class="poll active" :key="poll.id" :to="pollPath(poll)">
+        <h3 class="small">{{ poll.name }}</h3>
+        <div v-if="pollIsNew(poll)" class="status new">NEW</div>
+      </router-link>
+      <div v-else class="poll" :key="poll.id">
+        <h3 class="small">{{ poll.name }}</h3>
+      </div>
+    </template>
   </div>
 </div><!-- FIXME: make component similar to musou-vue-webpack/SeriesMenu -->
 </template>
@@ -21,12 +28,20 @@ export default {
   props: ['channel'],
   data() {
     return {
+      keyVisual: require('_/polls_open.png'),
       polls
     }
   },
   methods: {
     pollPath(poll) {
       return '/polls/' + poll.slug
+    },
+    pollIsNew(poll) {
+      return poll.status === 'new'
+    },
+    pollIsActive(poll) {
+      let now = Date.now()
+      return now >= poll.start_date.getTime() && now < poll.end_date.getTime()
     }
   },
   beforeMount() {
@@ -41,22 +56,18 @@ export default {
 .polls-wrapper {
   // this should be the standard style for container
   max-width: $bp-sm;
-  margin: 1rem auto;
+  margin: 2rem auto;
   @include bp-sm-down {
     padding: 0 1rem;
   }
 
-  .logotype {
-    box-sizing: content-box;
-    $border-left-width: 0.75rem;
-    border-left: $border-left-width $color-nice-grey solid;
-    margin-left: -$border-left-width;
-    width: 154px;
+  > .key-visual {
+    width: 100%;
   }
 }
 // this should be the standard style for a list of links
 .polls {
-  margin: 1rem 0;
+  margin: 2rem 0;
   > .poll {
     position: relative;
     display: inline-block;
@@ -64,10 +75,36 @@ export default {
     max-width: 16rem;
     margin: 0 1rem 1rem 0;
     padding: 1rem;
-    background: rgba($color-park, 0.25);
+    background: rgba($color-nice-grey, 0.25);
+    color: $color-nice-grey;
+    cursor: default;
     @include shadow-minimum;
     &:hover {
       @include shadow;
+    }
+    &.active {
+      background: rgba($color-park, 0.25);
+      color: black;
+      cursor: pointer;
+    }
+
+    > .status {
+      $font-size: 0.75rem;
+      $width: 3.6;
+      position: absolute;
+      top: -$font-size;
+      right: -$font-size;
+      width: $font-size*$width;
+      @include transform(rotate(15deg))
+
+      font-size: $font-size;
+      line-height: 1;
+      padding: $font-size*($width - 1)/2 0;
+      border-radius: $font-size * $width/2;
+
+      background: $color-park;
+      color: white;
+      text-align: center;
     }
   }
 }

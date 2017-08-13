@@ -4,8 +4,12 @@ export default [
     slug: 'ask-taoyuan',
     type: 'people',
     name: '桃園立委給問嗎',
+    start_date: new Date(2017, 7, 1), // 1 August 2017
+    end_date: new Date(2017, 7, 31), // 31 August 2017
+    status: 'new',
     question: '這些桃園的立法委員，你想問誰？',
     description: '沃草將會邀請得票數前四位的委員參加九月的《桃園立委給問嗎》。',
+    ballots_per_citizen: 1,
     options: [
       {
         id: '鄭運鵬',
@@ -61,11 +65,15 @@ export default [
   {
     id: 2,
     slug: 'ask-taichung',
-    name: '台中立委給問嗎'
+    name: '台中立委給問嗎',
+    start_date: new Date(2017, 8, 1), // 1 September 2017
+    end_date: new Date(2017, 8, 30) // 30 September 2017
   },
   {
     id: 3,
     slug: 'ask-kaohsiung',
-    name: '高雄立委給問嗎'
+    name: '高雄立委給問嗎',
+    start_date: new Date(2017, 9, 1), // 1 October 2017
+    end_date: new Date(2017, 9, 31) // 31 October 2017
   }
 ]

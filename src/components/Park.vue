@@ -1,14 +1,22 @@
 <template>
-<div class="everyone">
+<div class="park">
+  <polls></polls>
 </div>
 </template>
 
 <script>
+import dataStore from 'common/src/lib/dataStore'
+import Polls from '@/components/Polls'
+
 export default {
+  props: ['channel'],
   computed: {
     isAuthenticated() {
       return this.$store.state.isAuthenticated
     }
+  },
+  beforeMount() {
+    this.$emit('update:channel', dataStore.channels.park)
   },
   mounted() {
     if(this.hasRequest('login')) {
@@ -32,6 +40,9 @@ export default {
     hasRequest(key) {
       return this.$route.query.hasOwnProperty(key)
     }
+  },
+  components: {
+    Polls
   }
 }
 </script>

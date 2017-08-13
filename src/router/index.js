@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
-import Everyone from '@/components/Everyone'
+import Park from '@/components/Park'
 import Polls from '@/components/Polls'
 import PollingStation from '@/components/PollingStation'
 
@@ -15,8 +15,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'everyone',
-      component: Everyone
+      name: 'park',
+      component: Park
     },
     {
       path: '/polls',
