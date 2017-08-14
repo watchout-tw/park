@@ -19,7 +19,7 @@ export default {
     this.$emit('update:channel', dataStore.channels.park)
   },
   mounted() {
-    if(this.hasRequest('login')) {
+    if(this.hasQueryParameter('login')) {
       if(!this.isAuthenticated) {
         this.$store.dispatch('toggleModalAuthActiveCard', {
           value: 'login'
@@ -30,14 +30,26 @@ export default {
       } else {
         alert('歡迎回到沃草共有地')
       }
-    } else if(this.hasRequest('reset-password')) {
-      this.$store.dispatch('toggleModalResetPwd', {
-        value: true
+    } else if(this.hasQueryParameter('reset-password')) {
+      // FIXME: logout should be a common function?
+      this.$store.dispatch('toggleIsAuthenticated', {
+        value: false
       })
+      localStorage.clear()
+
+      // set token & show reset password modal
+      if(this.hasQueryParameter('token')) {
+        localStorage.setItem('watchout-password-reset-token', this.$route.query.token)
+        this.$store.dispatch('toggleModalResetPwd', {
+          value: true
+        })
+      } else {
+        alert('你的token呢？')
+      }
     }
   },
   methods: {
-    hasRequest(key) {
+    hasQueryParameter(key) {
       return this.$route.query.hasOwnProperty(key)
     }
   },
