@@ -22,7 +22,7 @@ import polls from '@/data/polls' // FIXME: eventually use GET /park/polls
 export default {
   metaInfo() {
     return {
-      title: '沃草→民調←'
+      title: (this.$route.path.indexOf('polls') > -1 ? '沃草→民調←' : undefined)
     }
   },
   props: ['channel'],
