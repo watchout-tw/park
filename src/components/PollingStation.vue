@@ -12,7 +12,14 @@ import polls from '@/data/polls' // FIXME: GET /park/polls
 export default {
   metaInfo() {
     return {
-      title: this.config ? `沃草→${this.config.name}←` : '沃草→民調←'
+      title: this.config ? `沃草→民調←${this.config.name}↑` : '沃草→民調←',
+      meta: [
+        {
+          vmid: 'og-image',
+          property: 'og:image',
+          content: this.config ? require(`_/polls/${this.config.slug}.jpg`) : require('_/polls_open.png')
+        }
+      ]
     }
   },
   props: ['channel'],

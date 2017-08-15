@@ -9,6 +9,17 @@ import dataStore from 'common/src/lib/dataStore'
 import Polls from '@/components/Polls'
 
 export default {
+  metaInfo() {
+    return {
+      meta: [
+        {
+          vmid: 'og-image',
+          property: 'og:image',
+          content: require('_/park.png')
+        }
+      ]
+    }
+  },
   props: ['channel'],
   computed: {
     isAuthenticated() {

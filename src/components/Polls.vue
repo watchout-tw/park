@@ -21,9 +21,17 @@ import polls from '@/data/polls' // FIXME: eventually use GET /park/polls
 
 export default {
   metaInfo() {
-    return {
-      title: (this.$route.path.indexOf('polls') > -1 ? '沃草→民調←' : undefined)
+    let infoObj = {
+      title: '沃草→民調←',
+      meta: [
+        {
+          vmid: 'og-image',
+          property: 'og:image',
+          content: require('_/polls_open.png')
+        }
+      ]
     }
+    return this.$route.path.indexOf('polls') > -1 ? infoObj : {}
   },
   props: ['channel'],
   data() {
