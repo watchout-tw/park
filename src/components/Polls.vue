@@ -31,7 +31,7 @@ export default {
         }
       ]
     }
-    return this.$route.path.indexOf('polls') > -1 ? infoObj : {}
+    return this.$route.path.indexOf('kangsim') > -1 ? infoObj : {}
   },
   props: ['channel'],
   data() {
