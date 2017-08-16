@@ -1,5 +1,6 @@
 <template>
 <div class="park">
+  <div class="key-visual"><img :src="keyVisual" /></div>
   <polls></polls>
 </div>
 </template>
@@ -11,6 +12,7 @@ import Polls from '@/components/Polls'
 export default {
   metaInfo() {
     return {
+      title: '沃草→中央公園←',
       meta: [
         {
           vmid: 'og-image',
@@ -24,6 +26,11 @@ export default {
   computed: {
     isAuthenticated() {
       return this.$store.state.isAuthenticated
+    }
+  },
+  data() {
+    return {
+      keyVisual: require('_/park.png')
     }
   },
   beforeMount() {
@@ -69,3 +76,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.park {
+  > .key-visual {
+    width: 100%;
+    > img {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+</style>
