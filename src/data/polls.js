@@ -8,7 +8,8 @@ export default [
     end_date: new Date(2017, 7, 31), // 31 August 2017
     status: 'new',
     question: '這些桃園的立法委員，你想問誰？',
-    description: '沃草將會邀請得票數前四位的委員參加九月的《桃園立委給問嗎》。',
+    description: '沃草會邀請這次《找共識》得票數前三位的委員，參加沃草《給問擂台》預計於九月二十三日舉辦的《桃園立委給問嗎》。',
+    // question + description → <meta> description
     ballots_per_citizen: 1,
     options: [
       {

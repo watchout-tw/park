@@ -17,7 +17,7 @@ export default {
         {
           vmid: 'description',
           name: 'description',
-          content: this.config ? this.config.description : '沃草找共識'
+          content: this.config ? this.config.question + this.config.description : '沃草找共識'
         },
         {
           vmid: 'og-image',
