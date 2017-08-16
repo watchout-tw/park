@@ -19,13 +19,13 @@ export default new Router({
       component: Park
     },
     {
-      path: '/polls',
-      name: 'polls',
+      path: '/kangsim',
+      name: 'kangsim-list',
       component: Polls
     },
     {
-      path: '/polls/:slug',
-      name: 'poll',
+      path: '/kangsim/:slug',
+      name: 'kangsim-poll',
       component: PollingStation
     }
   ]

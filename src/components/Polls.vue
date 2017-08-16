@@ -22,12 +22,12 @@ import polls from '@/data/polls' // FIXME: eventually use GET /park/polls
 export default {
   metaInfo() {
     let infoObj = {
-      title: '沃草→民調←',
+      title: '沃草→找共識←',
       meta: [
         {
           vmid: 'og-image',
           property: 'og:image',
-          content: require('_/polls_open.png')
+          content: require('_/finding_consensus.png')
         }
       ]
     }
@@ -36,13 +36,13 @@ export default {
   props: ['channel'],
   data() {
     return {
-      keyVisual: require('_/polls_open.png'),
+      keyVisual: require('_/finding_consensus.png'),
       polls
     }
   },
   methods: {
     pollPath(poll) {
-      return '/polls/' + poll.slug
+      return '/kangsim/' + poll.slug
     },
     pollIsNew(poll) {
       return poll.status === 'new'
@@ -53,7 +53,7 @@ export default {
     }
   },
   beforeMount() {
-    this.$emit('update:channel', dataStore.channels.poll)
+    this.$emit('update:channel', dataStore.channels.kangsim)
   }
 }
 </script>
