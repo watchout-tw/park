@@ -6,6 +6,7 @@
   <ModalLostPwd v-if="modalLostPwdIsShown"></ModalLostPwd>
   <ModalResetPwd v-if="modalResetPwdIsShown"></ModalResetPwd>
   <ModalIdentity v-if="modalIdentityIsShown"></ModalIdentity>
+  <ModalTermsOfSvc v-if="modalTermsOfSvcIsShown"></ModalTermsOfSvc>
   <FooterStandard></FooterStandard>
   <SupportWatchoutStandard v-if="supportIsShown" :support-is-shown.sync="supportIsShown" :support-package-key="supportPackageKey"></SupportWatchoutStandard>
 </div>
@@ -20,6 +21,7 @@ import ModalAuth from 'common/src/components/Modal/Auth'
 import ModalLostPwd from 'common/src/components/Modal/LostPwd'
 import ModalResetPwd from 'common/src/components/Modal/ResetPwd'
 import ModalIdentity from 'common/src/components/Modal/Identity'
+import ModalTermsOfSvc from 'common/src/components/Modal/TermsOfSvc'
 import FooterStandard from 'common/src/components/Footer/Standard'
 import SupportWatchoutStandard from 'common/src/components/SupportWatchout/Standard'
 import * as util from 'common/src/lib/util'
@@ -34,6 +36,7 @@ export default {
     ModalLostPwd,
     ModalResetPwd,
     ModalIdentity,
+    ModalTermsOfSvc,
     FooterStandard,
     SupportWatchoutStandard
   },
@@ -52,6 +55,9 @@ export default {
     },
     modalIdentityIsShown() {
       return this.$store.state.modalIdentityIsShown
+    },
+    modalTermsOfSvcIsShown() {
+      return this.$store.state.modalTermsOfSvcIsShown
     }
   },
   data() {
