@@ -22,7 +22,7 @@ export default {
         {
           vmid: 'description',
           name: 'description',
-          content: this.config ? this.config.question + this.config.description : '投票表達你的意見，是一種公民參與，也是尋找共識的起點。'
+          content: this.config ? this.config.question : this.whatIsKangsim
         },
         {
           vmid: 'og-image',
