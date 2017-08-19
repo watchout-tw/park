@@ -61,6 +61,9 @@ export default {
   > .what-is-kangsim {
     max-width: $bp-sm;
     margin: 0 auto;
+    @include bp-sm-down {
+      padding: 0 1rem;
+    }
   }
 }
 </style>
