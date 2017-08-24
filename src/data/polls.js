@@ -75,7 +75,7 @@ export default [
       type: 'physical',
       name: '桃園立委給問嗎',
       link: 'https://ask.watchout.tw',
-      participation_link: 'https://ask.watchout.tw'
+      participation_link: 'https://goo.gl/CfsWRv'
     }
   },
   {
