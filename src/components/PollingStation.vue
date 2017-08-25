@@ -10,7 +10,7 @@
 
 <script>
 import dataStore from 'common/src/lib/dataStore'
-import Poll from 'common/src/components/Poll'
+import Poll from '@/components/Poll'
 import polls from '@/data/polls' // FIXME: GET /park/polls
 import marked from 'marked'
 
