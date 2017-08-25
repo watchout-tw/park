@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import * as util from 'common/src/lib/util'
 import dataStore from 'common/src/lib/dataStore'
 import Polls from '@/components/Polls'
 
@@ -59,7 +60,7 @@ export default {
           value: true
         })
       } else {
-        alert('歡迎回到沃草共有地')
+        util.sysAlert('park_welcome_back')
       }
     } else if(this.hasQueryParameter('reset-password')) {
       // FIXME: logout should be a common function?
@@ -75,7 +76,7 @@ export default {
           value: true
         })
       } else {
-        alert('你的token呢？')
+        util.sysAlert('park_auth_token_not_found')
       }
     }
   },
