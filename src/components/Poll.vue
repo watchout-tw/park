@@ -2,6 +2,7 @@
 <div class="poll" :class="pollClasses">
   <h1 class="small">{{ config.name }}</h1>
   <div class="paragraphs" v-html="markdown(ballotCasted ? thankYou : config.question)"></div>
+  <div class="reminder" v-if="!ballotCasted">{{ config.reminder }}</div>
   <div class="poll-loading" v-if="!initialized">載入中，請稍候⋯</div>
   <div class="poll-body" v-else>
     <div class="poll-tally" v-if="ballotCasted"><span class="underline">目前票數</span></div>
@@ -56,6 +57,11 @@ Vue.use(Vuex)
 axios.defaults.baseURL = 'https://c0re.watchout.tw'
 util.authenticateAxios()
 
+const punct = {
+  separator: '、',
+  colon: '：'
+}
+
 export default {
   props: ['config'],
   data() {
@@ -66,7 +72,7 @@ export default {
       initialized: false,
       entity: 'Poll',
       speechTargetID: undefined,
-      selectedOptionID: undefined,
+      selectedOptions: [],
       ballotCasted: false,
       tally: []
     }
@@ -90,8 +96,11 @@ export default {
     pollShareLink() {
       return `https://www.facebook.com/sharer/sharer.php?u=https%3A//park.watchout.tw/kangsim/${this.config.slug}`
     },
+    maxBallotReached() {
+      return this.selectedOptions.length >= this.config.ballots_per_citizen
+    },
     thankYou() {
-      return `感謝你參與這次的沃草《找共識》，你的選擇是<strong>${this.selectedOptionID}</strong>。`
+      return `感謝你參與這次的沃草《找共識》，你的選擇是${this.selectedOptions.map(option => `<strong>${option}</strong>`).join(punct.separator)}。`
     }
   },
   watch: {
@@ -111,7 +120,7 @@ export default {
   },
   methods: {
     init() {
-      this.selectedOptionID = undefined
+      this.selectedOptions = []
       this.ballotCasted = false
       this.tally = []
       // get list of party
@@ -131,9 +140,8 @@ export default {
         axios.get(`/citizen/speeches?target_source_entity=${this.entity}&target_source_id=${this.config.id}`).then(response => {
           let speeches = response.data.rows
           if(speeches.length > 0) {
-            let speech = speeches[speeches.length - 1]
             this.ballotCasted = true
-            this.selectedOptionID = speech.content
+            this.selectedOptions = speeches.map(speech => speech.content)
           }
           this.initialized = true
         }).catch(util.handleThatError)
@@ -148,7 +156,7 @@ export default {
     },
     optionClasses(optionID) {
       return {
-        selected: optionID === this.selectedOptionID
+        selected: this.selectedOptions.indexOf(optionID) > -1
       }
     },
     optionImageStyle(optionID) {
@@ -174,19 +182,29 @@ export default {
     },
     handleSelect(optionID) {
       if(!this.ballotCasted) {
-        this.selectedOptionID = optionID
+        let index = this.selectedOptions.indexOf(optionID)
+        if(index > -1) {
+          this.selectedOptions.splice(index, 1)
+        } else {
+          if(this.maxBallotReached) {
+            this.selectedOptions.shift()
+          }
+          this.selectedOptions.push(optionID)
+        }
       }
     },
     castBallot() {
-      if(this.selectedOptionID) {
+      if(this.selectedOptions.length > 0) {
         if(!this.ballotCasted) {
           // register this ballot
-          let speechObj = {
-            citizen_speech_target_id: this.speechTargetID,
-            type: 'ballot',
-            content: this.selectedOptionID
-          }
-          axios.post('/citizen/speeches', speechObj).then(response => {
+          Promise.all(this.selectedOptions.map(option => {
+            let speechObj = {
+              citizen_speech_target_id: this.speechTargetID,
+              type: 'ballot',
+              content: option
+            }
+            return axios.post('citizen/speeches', speechObj)
+          })).then(response => {
             this.ballotCasted = true
           }).catch(util.handleThatError)
         }
@@ -208,6 +226,16 @@ export default {
   @include bp-sm-down {
     padding: 0 1rem;
   }
+
+  > .reminder {
+    $font-size: 0.85rem;
+    margin: 1.5rem auto;
+    padding: 1rem;
+    max-width: $font-size*16 + 2rem;
+    font-size: $font-size;
+    background: $color-park-light;
+  }
+
   > .poll-body {
     > .poll-tally {
       margin-bottom: 1rem;
