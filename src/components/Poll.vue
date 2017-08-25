@@ -61,6 +61,11 @@ const punct = {
   separator: '、',
   colon: '：'
 }
+// https://hackernoon.com/7aac18c4431e
+const promiseSerial = funcs =>
+  funcs.reduce((promise, func) =>
+    promise.then(result => func().then(Array.prototype.concat.bind(result))),
+    Promise.resolve([]))
 
 export default {
   props: ['config'],
@@ -196,17 +201,19 @@ export default {
     castBallot() {
       if(this.selectedOptions.length > 0) {
         if(!this.ballotCasted) {
-          // register this ballot
-          Promise.all(this.selectedOptions.map(option => {
+          let promiseExecutors = this.selectedOptions.map(option => () => {
             let speechObj = {
               citizen_speech_target_id: this.speechTargetID,
               type: 'ballot',
               content: option
             }
             return axios.post('citizen/speeches', speechObj)
-          })).then(response => {
-            this.ballotCasted = true
-          }).catch(util.handleThatError)
+          })
+          promiseSerial(promiseExecutors)
+            .then(responses => {
+              this.ballotCasted = true
+            })
+            .catch(util.handleThatError)
         }
       }
     },
