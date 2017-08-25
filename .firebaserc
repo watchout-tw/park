@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "park-d44c7"
+    "staging": "park-d44c7",
+    "production": "park-83e1b"
   }
 }

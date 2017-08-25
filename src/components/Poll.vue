@@ -54,7 +54,6 @@ import marked from 'marked'
 import axios from 'axios'
 
 Vue.use(Vuex)
-axios.defaults.baseURL = 'https://c0re.watchout.tw'
 util.authenticateAxios()
 
 const punct = {
