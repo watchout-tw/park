@@ -15,6 +15,7 @@
 <script>
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 import dataStore from 'common/src/lib/dataStore'
 import NavigationWithIdentity from 'common/src/components/Navigation/Identity'
 import ModalAuth from 'common/src/components/Modal/Auth'
@@ -27,6 +28,8 @@ import SupportWatchoutStandard from 'common/src/components/SupportWatchout/Stand
 import * as util from 'common/src/lib/util'
 
 Vue.use(Vuex)
+
+axios.defaults.baseURL = 'https://c0re.watchout.tw'
 
 export default {
   name: 'app',

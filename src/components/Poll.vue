@@ -22,7 +22,7 @@
     </div>
     <div class="login" v-if="!isAuthenticated">
       <div class="paragraphs center small">
-        <p class="note">必須先成為草民或登入才能參與這次找共識哦。</p>
+        <p class="note">你必須先成為草民或登入，才能參與這次《找共識》哦。</p>
       </div>
       <button class="park floating" @click="showModalAuth">成為草民或登入</button>
     </div>
@@ -35,11 +35,11 @@
     <div class="share" v-else>
       <div class="buttons">
         <a class="button-wrapper" :href="config.related_event.participation_link" target="_blank"><button class="park floating">我要參加{{ config.related_event.name }}</button></a>
-        <a class="button-wrapper" :href="pollShareLink" target="_blank"><button class="park floating">我要分享這次找共識</button></a>
+        <a class="button-wrapper" :href="pollShareLink" target="_blank"><button class="park floating">我要分享這次《找共識》</button></a>
       </div>
     </div>
     <div class="description">
-      <h2 class="small">關於這次找共識</h2>
+      <h2 class="small">關於這次《找共識》</h2>
       <div class="paragraphs" v-html="markdown(config.description)"></div>
     </div>
   </div>
@@ -54,7 +54,6 @@ import marked from 'marked'
 import axios from 'axios'
 
 Vue.use(Vuex)
-axios.defaults.baseURL = 'https://c0re.watchout.tw'
 util.authenticateAxios()
 
 const punct = {
