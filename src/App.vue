@@ -15,7 +15,6 @@
 <script>
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
 import dataStore from 'common/src/lib/dataStore'
 import NavigationWithIdentity from 'common/src/components/Navigation/Identity'
 import ModalAuth from 'common/src/components/Modal/Auth'
@@ -66,13 +65,6 @@ export default {
       channel: dataStore.channels.park,
       supportIsShown: true,
       supportPackageKey: 'ask'
-    }
-  },
-  created() {
-    if(Vue.config.mode === 'production') {
-      axios.defaults.baseURL = 'https://core.watchout.tw'
-    } else {
-      axios.defaults.baseURL = 'https://c0re.watchout.tw'
     }
   },
   beforeMount() {
