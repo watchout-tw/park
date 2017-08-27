@@ -29,8 +29,6 @@ import * as util from 'common/src/lib/util'
 
 Vue.use(Vuex)
 
-axios.defaults.baseURL = 'https://c0re.watchout.tw'
-
 export default {
   name: 'app',
   components: {
@@ -68,6 +66,14 @@ export default {
       channel: dataStore.channels.park,
       supportIsShown: true,
       supportPackageKey: 'ask'
+    }
+  },
+  created() {
+    console.log(`This is the Park App (${Vue.config.mode})`)
+    if(Vue.config.mode === 'production') {
+      axios.defaults.baseURL = 'https://core.watchout.tw'
+    } else {
+      axios.defaults.baseURL = 'https://c0re.watchout.tw'
     }
   },
   beforeMount() {

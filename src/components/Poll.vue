@@ -47,13 +47,10 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Vuex from 'vuex'
 import * as util from 'common/src/lib/util'
 import marked from 'marked'
 import axios from 'axios'
 
-Vue.use(Vuex)
 util.authenticateAxios()
 
 const punct = {

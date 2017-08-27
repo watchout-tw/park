@@ -1,4 +1,4 @@
 module.exports = {
   NODE_ENV: '"production"',
-  PROD_MODE: '"production"'
+  PROD_MODE: '"staging"'
 }
