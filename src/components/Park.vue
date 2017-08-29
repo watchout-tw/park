@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      keyVisual: require('_/park.png'),
+      keyVisual: require('_/park-enhanced.png'),
       ancmIsShown: true,
       ancmText: '桃園立委給問嗎？票選活動現正進行中。',
       ancmGoRoute: '/kangsim/ask-taoyuan'
