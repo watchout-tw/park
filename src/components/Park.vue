@@ -28,7 +28,7 @@ export default {
         {
           vmid: 'og-image',
           property: 'og:image',
-          content: require('_/park.png')
+          content: require('_/park-enhanced.png')
         }
       ]
     }
