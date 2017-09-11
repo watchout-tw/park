@@ -1,11 +1,11 @@
 <template>
 <div class="poll" :class="pollClasses">
   <h1 class="small">{{ config.name }}</h1>
-  <div class="paragraphs" v-html="markdown(ballotCasted ? thankYou : config.question)"></div>
-  <div class="reminder" v-if="!ballotCasted">{{ config.reminder }}</div>
+  <div class="paragraphs" v-html="markdown(showTally ? thankYou : config.question)"></div>
+  <div class="reminder" v-if="!showTally">{{ config.reminder }}</div>
   <div class="poll-loading" v-if="!initialized">載入中，請稍候⋯</div>
   <div class="poll-body" v-else>
-    <div class="poll-tally" v-if="ballotCasted"><span class="underline">目前票數</span></div>
+    <div class="poll-tally" v-if="showTally"><span class="underline">{{ isClosed ? '最終' : '目前' }}票數</span></div>
     <div class="options d-flex flex-wrap" v-if="initialized">
       <div v-for="option in config.options" :key="option.id" class="option" :class="optionClasses(option.id)" @click="handleSelect(option.id)">
         <div class="image" :style="optionImageStyle(option.id)"></div>
@@ -17,7 +17,7 @@
           <div class="district" v-if="option.district">{{ option.district }}</div>
           <div class="neighborhoods" v-if="option.neighborhoods"><span class="neighborhood" v-for="neighborhood in option.neighborhoods" :key="neighborhood">{{ neighborhood }}</span></div>
         </div>
-        <div class="tally" v-if="ballotCasted"><div class="value" v-html="optionTally(option.id)"></div></div>
+        <div class="tally" v-if="showTally"><div class="value" v-html="optionTally(option.id)"></div></div>
       </div>
     </div>
     <div class="login" v-if="!isAuthenticated">
@@ -26,7 +26,7 @@
       </div>
       <button class="park floating" @click="showModalAuth">成為草民或登入</button>
     </div>
-    <div class="submit" v-else-if="!ballotCasted">
+    <div class="submit" v-else-if="!showTally">
       <div class="paragraphs center small">
         <p class="note">想清楚再按下按鈕哦，送出後無法更改。</p>
       </div>
@@ -50,6 +50,7 @@
 import * as util from 'common/src/lib/util'
 import marked from 'marked'
 import axios from 'axios'
+import * as pollUtil from '@/util/poll'
 
 util.authenticateAxios()
 
@@ -88,10 +89,15 @@ export default {
     isPeople() {
       return this.config.type === 'people'
     },
+    isClosed() {
+      return pollUtil.pollStatus(this.config) === 'closed'
+    },
+    showTally() {
+      return this.ballotCasted || this.isClosed
+    },
     pollClasses() {
       return {
-        'ballot-casted': this.ballotCasted,
-        'closed': this.config.ballotClosed
+        'show-tally': this.showTally
       }
     },
     pollShareLink() {
@@ -101,7 +107,9 @@ export default {
       return this.selectedOptions.length >= this.config.ballots_per_citizen
     },
     thankYou() {
-      return `感謝你參與這次的沃草《找共識》，你的選擇是${this.selectedOptions.map(option => `<strong>${option}</strong>`).join(punct.separator)}。`
+      return (this.isClosed ? '這次《找共識》已結束。' : '') + (this.selectedOptions.length > 0
+        ? '感謝你' + (this.isClosed ? '的參與' : '參與這次的沃草《找共識》') + '，你的選擇是' + this.selectedOptions.map(option => `<strong>${option}</strong>`).join(punct.separator) + '。'
+        : '')
     }
   },
   watch: {
@@ -110,10 +118,7 @@ export default {
       this.init()
     },
     ballotCasted() {
-      // get tally
-      axios.get(`/park/polls/${this.config.id}`).then(response => {
-        this.tally = response.data.tally
-      }).catch(util.handleThatError)
+      this.getTally()
     }
   },
   created() {
@@ -124,6 +129,9 @@ export default {
       this.selectedOptions = []
       this.ballotCasted = false
       this.tally = []
+
+      this.getTally()
+
       // get list of party
       axios.get('/c0ngress/parties').then(response => {
         this.lib.parties = response.data.rows
@@ -175,6 +183,12 @@ export default {
       }
       return 0
     },
+    getTally() {
+      console.log('getTally')
+      axios.get(`/park/polls/${this.config.id}`).then(response => {
+        this.tally = response.data.tally
+      }).catch(util.handleThatError)
+    },
     flagStyle(partyAbbreviation) {
       let party = this.lib.parties.filter(party => party.abbreviation === partyAbbreviation).pop()
       return {
@@ -182,7 +196,7 @@ export default {
       }
     },
     handleSelect(optionID) {
-      if(!this.ballotCasted) {
+      if(!this.showTally) {
         let index = this.selectedOptions.indexOf(optionID)
         if(index > -1) {
           this.selectedOptions.splice(index, 1)
@@ -196,7 +210,7 @@ export default {
     },
     castBallot() {
       if(this.selectedOptions.length > 0) {
-        if(!this.ballotCasted) {
+        if(!this.showTally) {
           let promiseExecutors = this.selectedOptions.map(option => () => {
             let speechObj = {
               citizen_speech_target_id: this.speechTargetID,
@@ -368,7 +382,7 @@ export default {
     }
   }
 }
-.poll.ballot-casted {
+.poll.show-tally {
   > .poll-body {
     > .options {
       > .option {

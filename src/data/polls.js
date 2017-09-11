@@ -83,14 +83,14 @@ export default [
     id: 2,
     slug: 'ask-taichung',
     name: '台中立委給問嗎',
-    start_date: new Date(2017, 8, 1), // 1 September 2017
-    end_date: new Date(2017, 8, 30) // 30 September 2017
+    start_date: new Date(2020, 0, 1), // future
+    end_date: new Date(2020, 0, 1) // future
   },
   {
     id: 3,
     slug: 'ask-kaohsiung',
     name: '高雄立委給問嗎',
-    start_date: new Date(2017, 9, 1), // 1 October 2017
-    end_date: new Date(2017, 9, 31) // 31 October 2017
+    start_date: new Date(2020, 0, 1), // future
+    end_date: new Date(2020, 0, 31) // future
   }
 ]

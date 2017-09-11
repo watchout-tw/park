@@ -8,7 +8,7 @@
       <div class="marquee">
         <div class="content">{{ ancmText }}</div>
       </div>
-      <div class="panel-action"><button class="park soft">我要投票</button></div>
+      <div class="panel-action"><button class="park soft">{{ ancmActionText }}</button></div>
       <div class="close" @click.self.stop="ancmIsShown = false"></div>
     </div>
   </div>
@@ -43,8 +43,9 @@ export default {
     return {
       keyVisual: require('_/park-enhanced.png'),
       ancmIsShown: true,
-      ancmText: '桃園立委給問嗎？票選活動現正進行中。',
-      ancmGoRoute: '/kangsim/ask-taoyuan'
+      ancmText: '桃園立委給問嗎？《找共識》最終結果出爐。',
+      ancmGoRoute: '/kangsim/ask-taoyuan',
+      ancmActionText: '看結果'
     }
   },
   beforeMount() {

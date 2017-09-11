@@ -3,9 +3,9 @@
   <img class="key-visual" :src="keyVisual" />
   <div class="polls">
     <template v-for="poll in polls">
-      <router-link v-if="pollIsActive(poll)" class="poll active" :key="poll.id" :to="pollPath(poll)">
+      <router-link v-if="pollIsOpen(poll)" class="poll active" :key="poll.id" :to="pollPath(poll)">
         <h3 class="small">{{ poll.name }}</h3>
-        <div v-if="pollIsNew(poll)" class="status new">NEW</div>
+        <div class="status" :class="pollStatusClasses(poll)">{{ pollStatus(poll) }}</div>
       </router-link>
       <div v-else class="poll" :key="poll.id">
         <h3 class="small">{{ poll.name }}</h3>
@@ -18,6 +18,7 @@
 <script>
 import dataStore from 'common/src/lib/dataStore'
 import polls from '@/data/polls' // FIXME: eventually use GET /park/polls
+import * as pollUtil from '@/util/poll'
 
 export default {
   metaInfo() {
@@ -44,12 +45,15 @@ export default {
     pollPath(poll) {
       return '/kangsim/' + poll.slug
     },
-    pollIsNew(poll) {
-      return poll.status === 'new'
+    pollStatus(poll) {
+      return pollUtil.pollStatusText(pollUtil.pollStatus(poll))
     },
-    pollIsActive(poll) {
+    pollStatusClasses(poll) {
+      return [pollUtil.pollStatus(poll)]
+    },
+    pollIsOpen(poll) {
       let now = Date.now()
-      return now >= poll.start_date.getTime() && now < poll.end_date.getTime()
+      return now >= poll.start_date.getTime() // && now < poll.end_date.getTime()
     }
   },
   beforeMount() {
@@ -113,6 +117,10 @@ export default {
       background: $color-park;
       color: white;
       text-align: center;
+
+      &.closed {
+        background: $color-border-grey;
+      }
     }
   }
 }
