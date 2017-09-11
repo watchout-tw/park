@@ -97,7 +97,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // prerender
     new PrerenderSpaPlugin(
       path.join(__dirname, '../docs'), // Path to compiled app
-      ['/', '/kangsim', '/kangsim/ask-taoyuan']// List of endpoints you wish to prerender
+      require('./prerendering.conf').routes // List of endpoints you wish to prerender
     )
   ]
 })

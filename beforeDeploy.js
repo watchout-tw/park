@@ -1,8 +1,5 @@
-const files = [
-  './docs/index.html',
-  './docs/kangsim/index.html',
-  './docs/kangsim/ask-taoyuan/index.html'
-]
+const files = require('./build/prerendering.conf').routes
+  .map(route => `./docs${route}/index.html`)
 const replace = require('replace-in-file')
 const options = {
   files,
